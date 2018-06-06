@@ -1,23 +1,43 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <PageScroll>
-      <div class="scroll-progress-container" slot-scope="{ scrollPercentage }">
-          <div class="scroll-progress" :style="{ width: `${scrollPercentage}%` }"/>
+    <VueportPageScroll>
+      <div
+        class="scroll-progress-rotate"
+        slot-scope="{ scrollY, scrollPcnt }"
+        :style="{ transform: `translateX(${scrollPcnt}%) rotate(${scrollY}deg)` }"
+      >
+        AAAAA
       </div>
-    </PageScroll>
+    </VueportPageScroll>
+
+    <VueportElementPosition>
+      <div class="mt-full" slot-scope="{ boundingClientRect, fullyVisible, visible, shown }">
+        <span v-if="boundingClientRect">
+          {{ boundingClientRect.top }}
+        </span>
+        <span v-if="boundingClientRect" class="bottom">
+          {{ shown ? 'Shown' : 'Not Shown' }}
+        </span>
+      </div>
+    </VueportElementPosition>
+
+    <VueportPageScroll>
+      <div class="scroll-progress-container" slot-scope="{ scrollPcnt }">
+          <div class="scroll-progress" :style="{ width: `${scrollPcnt}%` }"/>
+      </div>
+    </VueportPageScroll>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import PageScroll from './components/PageScroll.vue'
+import VueportPageScroll from './components/VueportPageScroll.vue'
+import VueportElementPosition from './components/VueportElementPosition.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    PageScroll
+    VueportPageScroll,
+    VueportElementPosition
   }
 }
 </script>
@@ -44,5 +64,22 @@ export default {
 .scroll-progress {
     background-color: green;
     height: 100%;
+}
+
+.scroll-progress-rotate {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  transform-origin: center;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.mt-full {
+  margin-top: 100vh;
 }
 </style>

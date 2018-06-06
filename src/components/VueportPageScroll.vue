@@ -23,7 +23,7 @@ export default {
             return this.scrollHeight - this.clientHeight;
         },
 
-        scrollPercentage() {
+        scrollPcnt() {
             return (this.scrollY / this.scrollableHeight) * 100;
         }
     },
@@ -50,7 +50,7 @@ export default {
             scrollHeight: this.scrollHeight,
             clientHeight: this.clientHeight,
             scrollableHeight: this.scrollableHeight,
-            scrollPercentage: this.scrollPercentage,
+            scrollPcnt: this.scrollPcnt,
         });
     }
 };
