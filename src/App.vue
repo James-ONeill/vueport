@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <PageScroll />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import PageScroll from './components/PageScroll.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HelloWorld,
+    PageScroll
   }
 }
 </script>
@@ -24,5 +26,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  height: 200vh;
 }
 </style>
