@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <PageScroll />
+    <PageScroll>
+      <div class="scroll-progress-container" slot-scope="{ scrollPercentage }">
+          <div class="scroll-progress" :style="{ width: `${scrollPercentage}%` }"/>
+      </div>
+    </PageScroll>
   </div>
 </template>
 
@@ -27,5 +31,18 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   height: 200vh;
+}
+
+.scroll-progress-container {
+    bottom: 0;
+    height: 6px;
+    position: fixed;
+    left: 0;
+    width: 100%;
+}
+
+.scroll-progress {
+    background-color: green;
+    height: 100%;
 }
 </style>

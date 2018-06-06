@@ -1,9 +1,3 @@
-<template>
-    <div class="scroll-progress-container">
-        <div class="scroll-progress" :style="{ width: `${scrollPercentage}%` }"/>
-    </div>
-</template>
-
 <script>
 export default {
     data() {
@@ -15,8 +9,13 @@ export default {
     },
 
     created() {
-        const scrollListener = window.addEventListener("scroll", this.recalculateScroll);
-        const resizeListener = window.addEventListener("resize", this.recalculateScroll);
+        window.addEventListener("scroll", this.recalculateScroll);
+        window.addEventListener("resize", this.recalculateScroll);
+
+        this.$once("hook:beforeDestroy", () => {
+            window.removeEventListener("scroll", this.recalculateScroll);
+            window.removeEventListener("resize", this.recalculateScroll);
+        });
     },
 
     computed: {
@@ -44,22 +43,17 @@ export default {
             });
         }
     },
-}
+
+    render() {
+        return this.$scopedSlots.default({
+            scrollY: this.scrollY,
+            scrollHeight: this.scrollHeight,
+            clientHeight: this.clientHeight,
+            scrollableHeight: this.scrollableHeight,
+            scrollPercentage: this.scrollPercentage,
+        });
+    }
+};
 </script>
-
-<style>
-.scroll-progress-container {
-    bottom: 0;
-    height: 6px;
-    position: fixed;
-    left: 0;
-    width: 100%;
-}
-
-.scroll-progress {
-    background-color: green;
-    height: 100%;
-}
-</style>
 
 
