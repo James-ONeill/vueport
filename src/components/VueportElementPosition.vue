@@ -43,6 +43,32 @@ export default {
                 this.boundingClientRect.top > 0 &&
                 this.boundingClientRect.bottom < window.innerHeight;
         },
+
+        center() {
+            if (! this.boundingClientRect) return;
+
+            const { top, height } = this.boundingClientRect;
+
+            return top + (height / 2);
+        },
+
+        topPcnt() {
+            if (! this.boundingClientRect) return;
+
+            return (this.boundingClientRect.top / window.innerHeight) * 100;
+        },
+
+        bottomPcnt() {
+            if (! this.boundingClientRect) return;
+
+            return (this.boundingClientRect.bottom / window.innerHeight) * 100;
+        },
+
+        centerPcnt() {
+            if (! this.boundingClientRect) return;
+
+            return (this.center / window.innerHeight) * 100;
+        },
     },
 
     methods: {
@@ -64,7 +90,11 @@ export default {
             boundingClientRect: this.boundingClientRect,
             visible: this.visible,
             fullyVisible: this.fullyVisible,
-            shown: this.shown
+            shown: this.shown,
+            topPcnt: this.topPcnt,
+            bottomPcnt: this.bottomPcnt,
+            center: this.center,
+            centerPcnt: this.centerPcnt,
         });
     }
 }

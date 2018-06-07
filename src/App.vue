@@ -11,12 +11,12 @@
     </VueportPageScroll>
 
     <VueportElementPosition>
-      <div class="mt-full" slot-scope="{ boundingClientRect, fullyVisible, visible, shown }">
+      <div class="mt-full" slot-scope="{ boundingClientRect, centerPcnt }">
         <span v-if="boundingClientRect">
           {{ boundingClientRect.top }}
         </span>
         <span v-if="boundingClientRect" class="bottom">
-          {{ shown ? 'Shown' : 'Not Shown' }}
+          {{ centerPcnt }}
         </span>
       </div>
     </VueportElementPosition>
